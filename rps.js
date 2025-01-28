@@ -4,17 +4,17 @@ console.log("Logged into Js file ")
 function getComputerChoice(){
     let computerChoice = Math.random();
 
-    if (computerChoice <= 0.34){
-        computerChoice = "rock"
-        return computerChoice;
+    if (computerChoice <= 0.33){
+        
+        return "rock";
     
-    }else if (computerChoice <= 0.67){
-        computerChoice = "paper"
-        return computerChoice;
+    }else if (computerChoice <= 0.66 && computerChoice >= 0.33 ){
+        
+        return "paper";
     
     }else {
-        computerChoice = "scissors"
-        return computerChoice;
+        
+        return "scissors";
     }
 }
 
@@ -51,45 +51,68 @@ let computerScore = 0;
 
 function playRound(humanChoice,computerChoice){
     //make human argument case insensitive
-     hmChoice = humanChoice.toLowerCase();
+      hmChoice = humanChoice.toLowerCase();
+      compChoice = computerChoice.toLowerCase();
      
     // if else to compare the options and choose winner 
 
     //For rock scenes
-    if (hmChoice == "rock" && computerChoice == "rock"){
+    if (hmChoice == "rock" && compChoice == "rock"){
         alert("Computer chose rock too! it's a draw")
         humanScore++;
         computerScore++;
-    }else if (hmChoice == "rock" && computerChoice == "paper"){
+    }else if (hmChoice == "rock" && compChoice == "paper"){
         alert("Computer chose Paper, you lost")
         computerScore++;
-    }else if (hmChoice == "rock" && computerChoice == "paper"){
+    }else if (hmChoice == "rock" && compChoice == "scissors"){
         alert("Rock beats paper, congrats you won!")
         humanScore++;
     }
    //for paper scenes
-    if (hmChoice == "paper" && computerChoice == "paper"){
+    if (hmChoice == "paper" && compChoice == "paper"){
         alert("Computer chose paper, it's a draw ")
         computerScore++;
         humanScore++;
-    }else if (hmChoice == "paper" && computerChoice == "rock"){
+    }else if (hmChoice == "paper" && compChoice == "rock"){
         alert("Computer chose rock, you won")
         humanScore++;
-    }else if (hmChoice == "paper" && computerChoice == "scissors"){
+    }else if (hmChoice == "paper" && compChoice == "scissors"){
         alert("Computer chose scissors, you lost")
         computerScore++;
     }
     // for scissors scenes
-    if (hmChoice == "scissors" && computerChoice == "scissors"){
+    if (hmChoice == "scissors" && compChoice == "scissors"){
         alert("Computer chose scissors, it's a draw")
         humanScore++;
         computerScore++;
-    }else if (hmChoice == "scissors" && computerChoice == "rock"){
+    }else if (hmChoice == "scissors" && compChoice == "rock"){
         alert("Computer chose rock, you lost")
         computerScore++;
-    }else if (hmChoice == "scissors" && computerChoice == "paper"){
+    }else if (hmChoice == "scissors" && compChoice == "paper"){
         alert("Computer chose paper, you won")
         humanScore++;
     }
 }
 
+
+
+
+// Function to play rounds 
+
+function playGame(){
+    for ( let i = 0; i<5; i++){
+    playRound(getHumanChoice(),getComputerChoice())
+    alert(`Your score: ${humanScore}\n computer score: ${computerScore}`)
+    }
+
+    if (humanScore > computerScore){
+        alert("You have won! Congrats")
+    }else if ( computerScore > humanScore){
+        alert("You have lost damn! lock in bro")
+    }else {
+        alert("Damn it's a draw!")
+    }
+
+    
+}
+playGame()
